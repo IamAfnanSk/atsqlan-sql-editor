@@ -1,9 +1,9 @@
 import {
 	AiOutlineConsoleSql,
+	AiOutlineDatabase,
 	AiOutlineLogout,
 	AiOutlineTable
 } from 'react-icons/ai'
-import { CgDatabase } from 'react-icons/cg'
 
 const Sidebar: React.FC = () => {
 	return (
@@ -22,7 +22,7 @@ const Sidebar: React.FC = () => {
 						<p className='text-xs px-2'>Tables</p>
 					</div>
 					<div className='flex flex-col items-center cursor-pointer rounded-md py-3 hover:bg-gray-100'>
-						<CgDatabase className='text-2xl' />
+						<AiOutlineDatabase className='text-2xl' />
 						<p className='text-xs px-2'>DBs</p>
 					</div>
 				</div>
