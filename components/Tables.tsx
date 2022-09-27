@@ -1,6 +1,7 @@
 import { AiOutlineSearch, AiOutlineSortAscending } from 'react-icons/ai'
+import { CgDatabase } from 'react-icons/cg'
 
-const Search: React.FC = () => {
+const Tables: React.FC = () => {
 	return (
 		<div>
 			<label
@@ -20,7 +21,7 @@ const Search: React.FC = () => {
 						name='search'
 						id='search'
 						className='focus:ring-0  block w-full rounded-none rounded-l-md pl-10 sm:text-sm border-none outline-none'
-						placeholder='Table name, etc'
+						placeholder='Table name'
 					/>
 				</div>
 				<button
@@ -31,8 +32,24 @@ const Search: React.FC = () => {
 					<span>Sort</span>
 				</button>
 			</div>
+
+			<div className='mt-3 pt-2 space-y-1 border-t'>
+				{Array(15)
+					.fill(null)
+					.map((_, index) => {
+						return (
+							<div
+								className='flex items-center px-3 py-0.5 hover:bg-white rounded-md space-x-2 cursor-pointer'
+								key={index}
+							>
+								<CgDatabase className='flex-shrink-0' />
+								<p className='text-sm truncate'>DUMMY_TABLE_{index + 1}_FAKE</p>
+							</div>
+						)
+					})}
+			</div>
 		</div>
 	)
 }
 
-export default Search
+export default Tables
