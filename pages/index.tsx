@@ -4,6 +4,7 @@ import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex'
 import Layout from '../components/Layout'
 import QuerySelector from '../components/QuerySelector'
 import Tables from '../components/Tables'
+import Editor from '@monaco-editor/react'
 
 const Home: NextPage = () => {
 	return (
@@ -17,7 +18,7 @@ const Home: NextPage = () => {
 				</ReflexElement>
 				<ReflexSplitter />
 				<ReflexElement>
-					<h1>Hello 2</h1>
+					<Editor language='sql' />
 				</ReflexElement>
 			</ReflexContainer>
 		</Layout>

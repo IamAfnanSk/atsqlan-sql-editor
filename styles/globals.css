@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body .reflex-container.vertical > .reflex-splitter,
+.reflex-container.horizontal > .reflex-splitter {
+	transition: 0.1s linear !important;
+	@apply bg-gray-300 border-none w-[2px];
+}
+
+body .reflex-container.vertical > .reflex-splitter:hover,
+body .reflex-container.vertical > .reflex-splitter.active,
+body .reflex-container.horizontal > .reflex-splitter:hover,
+body .reflex-container.horizontal > .reflex-splitter.active {
+	@apply bg-gray-500 w-[4px] border-none;
+}
+
+/* Monaco editor cursor fix (it shows blue cursor bcoz of tailwindcss) */
+.monaco-editor .inputarea {
+	@apply !ring-0 !outline-none !border-none focus:!ring-0 !shadow-none focus:!shadow-none;
+}
