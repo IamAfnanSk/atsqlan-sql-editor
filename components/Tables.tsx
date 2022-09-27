@@ -4,10 +4,7 @@ import { CgDatabase } from 'react-icons/cg'
 const Tables: React.FC = () => {
 	return (
 		<div>
-			<label
-				htmlFor='search'
-				className='block text-sm font-medium text-gray-700'
-			>
+			<label htmlFor='search' className='block text-sm font-medium text-gray-700'>
 				Search
 			</label>
 
@@ -38,10 +35,7 @@ const Tables: React.FC = () => {
 					.fill(null)
 					.map((_, index) => {
 						return (
-							<div
-								className='flex items-center px-3 py-0.5 hover:bg-white rounded-md space-x-2 cursor-pointer'
-								key={index}
-							>
+							<div className='flex items-center px-3 py-0.5 hover:bg-white rounded-md space-x-2 cursor-pointer' key={index}>
 								<CgDatabase className='flex-shrink-0' />
 								<p className='text-sm truncate'>DUMMY_TABLE_{index + 1}_FAKE</p>
 							</div>

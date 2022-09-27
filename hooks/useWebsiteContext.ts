@@ -1,6 +1,16 @@
 import { useContext, createContext } from 'react'
+import { editor } from 'monaco-editor'
 
-type WebsiteContextType = {}
+export type EditorState = {
+	activeTabName: string | null
+	tabs: string[]
+	editor: editor.IStandaloneCodeEditor | null
+}
+
+type WebsiteContextType = {
+	editorState: EditorState
+	setEditorState: React.Dispatch<React.SetStateAction<EditorState>>
+}
 
 const WebsiteContext = createContext<WebsiteContextType | null>(null)
 

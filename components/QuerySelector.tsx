@@ -1,10 +1,7 @@
 const QuerySelector: React.FC = () => {
 	return (
 		<div>
-			<label
-				htmlFor='query'
-				className='block text-sm font-medium text-gray-700'
-			>
+			<label htmlFor='query' className='block text-sm font-medium text-gray-700'>
 				Select query
 			</label>
 			<select
