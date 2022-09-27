@@ -11,7 +11,14 @@ const Layout: React.FC<Props> = ({ children }) => {
 			<Sidebar />
 			<section className='flex-1'>
 				<Header />
-				<main className='bg-gray-100 h-full'>{children}</main>
+				<main
+					className={`bg-gray-100`}
+					style={{
+						height: 'calc(100% - 48px)'
+					}}
+				>
+					{children}
+				</main>
 			</section>
 		</section>
 	)
