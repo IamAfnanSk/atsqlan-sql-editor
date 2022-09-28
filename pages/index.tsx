@@ -14,7 +14,7 @@ const Home: NextPage = () => {
 	const [selectedSidebar, setSelectedSidebar] = useState<TSidebarLinks>('queries')
 
 	useEffect(() => {
-		editorState.editor?.setValue(SQLQueries[selectedQueryIndex])
+		editorState.editor?.setValue(SQLQueries[selectedQueryIndex].query)
 	}, [editorState.editor, selectedQueryIndex])
 
 	return (

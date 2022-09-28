@@ -22,7 +22,7 @@ const QuerySelector: React.FC = () => {
 				{SQLQueries.map((query, index) => {
 					return (
 						<option key={index} value={index}>
-							{query}
+							{query.query}
 						</option>
 					)
 				})}

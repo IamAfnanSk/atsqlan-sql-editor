@@ -19,4 +19,22 @@ export const initialEditorState: TEditorState = {
 
 export type TSidebarLinks = 'queries' | 'tables' | 'about'
 
-export const SQLQueries = ['SELECT * FROM test_table;', 'SELECT name FROM test_table;', `SELECT * FROM test_table WHERE name = 'Afnan';`]
+type TSQLQuery = {
+	query: string
+	dataURL: string
+}
+
+export const SQLQueries: TSQLQuery[] = [
+	{
+		query: `SELECT * FROM customers;`,
+		dataURL: 'https://raw.githubusercontent.com/graphql-compose/graphql-compose-examples/master/examples/northwind/data/csv/customers.csv'
+	},
+	{
+		query: `SELECT * FROM employees;`,
+		dataURL: 'https://raw.githubusercontent.com/graphql-compose/graphql-compose-examples/master/examples/northwind/data/csv/employees.csv'
+	},
+	{
+		query: `SELECT * FROM orders;`,
+		dataURL: 'https://raw.githubusercontent.com/graphql-compose/graphql-compose-examples/master/examples/northwind/data/csv/orders.csv'
+	}
+]
