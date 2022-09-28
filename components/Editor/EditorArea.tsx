@@ -1,11 +1,10 @@
 import Editor, { OnMount } from '@monaco-editor/react'
 import { VscSave, VscPlay } from 'react-icons/vsc'
 import { useWebsiteContext } from '../../hooks/useWebsiteContext'
-import { SQLQueries } from '../../pages/global'
 import EditorTabs from './EditorTabs'
 
 const EditorArea: React.FC = () => {
-	const { editorState, setEditorState, selectedQueryIndex } = useWebsiteContext()
+	const { editorState, setEditorState } = useWebsiteContext()
 
 	const handleEditorDidMount: OnMount = (editor, monaco) => {
 		setEditorState((state) => ({ ...state, editor, monaco }))
@@ -28,7 +27,7 @@ const EditorArea: React.FC = () => {
 				</div>
 			</div>
 
-			<Editor defaultValue={SQLQueries[selectedQueryIndex]} path={editorState.activeTabName || 'default-model'} onMount={handleEditorDidMount} language='sql' />
+			<Editor path={editorState.activeTabName || 'default-model'} onMount={handleEditorDidMount} language='sql' />
 		</>
 	)
 }

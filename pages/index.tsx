@@ -3,15 +3,19 @@ import type { NextPage } from 'next'
 import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex'
 import Layout from '../components/Layout'
 import WebsiteContext from '../hooks/useWebsiteContext'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import EditorArea from '../components/Editor/EditorArea'
-import { TEditorState, initialEditorState, TSidebarLinks } from './global'
+import { TEditorState, initialEditorState, TSidebarLinks, SQLQueries } from './global'
 import Sidebar from '../components/Sidebar/Sidebar'
 
 const Home: NextPage = () => {
 	const [editorState, setEditorState] = useState<TEditorState>(initialEditorState)
 	const [selectedQueryIndex, setSelectedQueryIndex] = useState<number>(0)
 	const [selectedSidebar, setSelectedSidebar] = useState<TSidebarLinks>('queries')
+
+	useEffect(() => {
+		editorState.editor?.setValue(SQLQueries[selectedQueryIndex])
+	}, [editorState.editor, selectedQueryIndex])
 
 	return (
 		<WebsiteContext.Provider

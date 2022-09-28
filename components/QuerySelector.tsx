@@ -2,7 +2,7 @@ import { useWebsiteContext } from '../hooks/useWebsiteContext'
 import { SQLQueries } from '../pages/global'
 
 const QuerySelector: React.FC = () => {
-	const { selectedQueryIndex, setSelectedQueryIndex, editorState } = useWebsiteContext()
+	const { selectedQueryIndex, setSelectedQueryIndex } = useWebsiteContext()
 
 	return (
 		<div>
@@ -13,7 +13,6 @@ const QuerySelector: React.FC = () => {
 				onChange={(e) => {
 					const newSelectedIndex = parseInt(e.target.value)
 					setSelectedQueryIndex(newSelectedIndex)
-					editorState.editor?.setValue(SQLQueries[newSelectedIndex])
 				}}
 				value={selectedQueryIndex}
 				id='query'
