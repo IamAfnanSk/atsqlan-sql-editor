@@ -1,7 +1,12 @@
 import { AiOutlineConsoleSql, AiOutlineDatabase, AiOutlineLogout, AiOutlineTable } from 'react-icons/ai'
 
+type SidebarNavLink = {
+	name: string
+	icon: JSX.Element
+}
+
 const Sidebar: React.FC = () => {
-	const sidebarTopLinks = [
+	const sidebarTopLinks: SidebarNavLink[] = [
 		{
 			name: 'Query',
 			icon: <AiOutlineConsoleSql />
@@ -16,7 +21,7 @@ const Sidebar: React.FC = () => {
 		}
 	]
 
-	const sidebarBottomLinks = [
+	const sidebarBottomLinks: SidebarNavLink[] = [
 		{
 			name: 'Logout',
 			icon: <AiOutlineLogout />

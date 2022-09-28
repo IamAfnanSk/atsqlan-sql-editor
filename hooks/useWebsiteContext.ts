@@ -1,11 +1,5 @@
 import { useContext, createContext } from 'react'
-import { editor } from 'monaco-editor'
-
-export type EditorState = {
-	activeTabName: string | null
-	tabs: string[]
-	editor: editor.IStandaloneCodeEditor | null
-}
+import { EditorState } from '../pages/global'
 
 type WebsiteContextType = {
 	editorState: EditorState
@@ -17,9 +11,7 @@ const WebsiteContext = createContext<WebsiteContextType | null>(null)
 export const useWebsiteContext = (): WebsiteContextType => {
 	const context = useContext(WebsiteContext)
 	if (!context) {
-		throw new Error(
-			'WebsiteContextType should be used inside <WebsiteContext.Provider />'
-		)
+		throw new Error('WebsiteContext should be used inside <WebsiteContext.Provider />')
 	}
 	return context
 }
