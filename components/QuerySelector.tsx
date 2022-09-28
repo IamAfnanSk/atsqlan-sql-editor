@@ -1,5 +1,5 @@
 import { useWebsiteContext } from '../hooks/useWebsiteContext'
-import { SQLQueries } from '../pages/global'
+import { SQLQueries } from '../global'
 
 const QuerySelector: React.FC = () => {
 	const { selectedQueryIndex, setSelectedQueryIndex } = useWebsiteContext()

@@ -18,9 +18,7 @@ const EditorTabs: React.FC = () => {
 								}
 							})
 						}}
-						className={`${
-							editorState.activeTabName === tab ? 'border-gray-700' : 'border-white'
-						} border-b-2 flex-shrink-0 px-8 relative cursor-pointer group py-1 bg-white flex items-center`}
+						className={`${editorState.activeTabName === tab ? 'border-gray-700' : 'border-white'} border-b-2 px-8 relative cursor-pointer group py-1 bg-white flex items-center`}
 						key={tab}
 					>
 						<p className=''>{tab}</p>
@@ -59,7 +57,7 @@ const EditorTabs: React.FC = () => {
 							return { ...state, activeTabName: newTabName, tabs: [...state.tabs, newTabName] }
 						})
 					}}
-					className={`flex-shrink-0 cursor-pointer p-1 flex justify-center items-center ml-1 bg-white rounded-md`}
+					className={`cursor-pointer p-1 flex justify-center items-center ml-1 bg-white rounded-md`}
 				>
 					<AiOutlineFileAdd className='text-lg' />
 				</div>

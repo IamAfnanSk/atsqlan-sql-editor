@@ -1,6 +1,6 @@
 import { AiOutlineConsoleSql, AiOutlineInfo, AiOutlineLogout, AiOutlineTable } from 'react-icons/ai'
 import { useWebsiteContext } from '../../hooks/useWebsiteContext'
-import { TSidebarLinks } from '../../pages/global'
+import { TSidebarLinks } from '../../global'
 
 type TSidebarNavLink = {
 	name: string

@@ -16,11 +16,11 @@ const EditorArea: React.FC = () => {
 				<EditorTabs />
 
 				<div className='mr-4 text-xs space-x-2 flex items-center'>
-					<div onClick={() => {}} className={`flex-shrink-0 cursor-pointer py-1 px-2 flex justify-center items-center bg-white shadow-sm rounded-md`}>
+					<div onClick={() => {}} className={`cursor-pointer py-1 px-2 flex justify-center items-center bg-white shadow-sm rounded-md`}>
 						<p className='mr-1'>Save</p>
 						<VscSave />
 					</div>
-					<div onClick={() => {}} className={`flex-shrink-0 cursor-pointer py-1 px-2 flex justify-center items-center bg-indigo-700 text-white rounded-md`}>
+					<div onClick={() => {}} className={`cursor-pointer py-1 px-2 flex justify-center items-center bg-indigo-700 text-white rounded-md`}>
 						<p className='mr-1'>Run</p>
 						<VscPlay />
 					</div>

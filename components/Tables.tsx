@@ -30,14 +30,14 @@ const Tables: React.FC = () => {
 				</button>
 			</div>
 
-			<div className='mt-3 pt-2 space-y-1 border-t'>
+			<div className='mt-3 space-y-1 pt-2 border-t'>
 				{Array(15)
 					.fill(null)
 					.map((_, index) => {
 						return (
-							<div className='flex items-center px-3 py-0.5 hover:bg-white rounded-md space-x-2 cursor-pointer' key={index}>
+							<div className='px-3 flex items-center py-0.5 hover:bg-white rounded-md cursor-pointer' key={index}>
 								<CgDatabase className='flex-shrink-0' />
-								<p className='text-sm truncate'>DUMMY_TABLE_{index + 1}_FAKE</p>
+								<p className='text-sm ml-2 truncate'>DUMMY_TABLE_{index + 1}</p>
 							</div>
 						)
 					})}

@@ -5,7 +5,7 @@ import Layout from '../components/Layout'
 import WebsiteContext from '../hooks/useWebsiteContext'
 import { useEffect, useState } from 'react'
 import EditorArea from '../components/Editor/EditorArea'
-import { TEditorState, initialEditorState, TSidebarLinks, SQLQueries } from './global'
+import { TEditorState, initialEditorState, TSidebarLinks, SQLQueries } from '../global'
 import Sidebar from '../components/Sidebar/Sidebar'
 
 const Home: NextPage = () => {
@@ -30,7 +30,7 @@ const Home: NextPage = () => {
 		>
 			<Layout showSidebar={true}>
 				<ReflexContainer orientation='vertical' className='h-full'>
-					<ReflexElement minSize={200} size={300} maxSize={350}>
+					<ReflexElement minSize={300} size={320} maxSize={350}>
 						<Sidebar />
 					</ReflexElement>
 

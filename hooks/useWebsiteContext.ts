@@ -1,5 +1,5 @@
 import { useContext, createContext } from 'react'
-import { TEditorState, TSidebarLinks } from '../pages/global'
+import { TEditorState, TSidebarLinks } from '../global'
 
 type TWebsiteContext = {
 	editorState: TEditorState
