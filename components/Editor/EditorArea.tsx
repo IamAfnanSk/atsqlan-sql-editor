@@ -4,7 +4,7 @@ import { useWebsiteContext } from '../../hooks/useWebsiteContext'
 import EditorTabs from './EditorTabs'
 
 const EditorArea: React.FC = () => {
-	const { editorState, setEditorState } = useWebsiteContext()
+	const { editorState, setEditorState, setQueryState } = useWebsiteContext()
 
 	const handleEditorDidMount: OnMount = (editor, monaco) => {
 		setEditorState((state) => ({ ...state, editor, monaco }))
@@ -20,7 +20,7 @@ const EditorArea: React.FC = () => {
 						<p className='mr-1'>Save</p>
 						<VscSave />
 					</div>
-					<div onClick={() => {}} className={`cursor-pointer py-1 px-2 flex justify-center items-center bg-indigo-700 text-white rounded-md`}>
+					<div onClick={() => setQueryState('running')} className={`cursor-pointer py-1 px-2 flex justify-center items-center bg-indigo-700 text-white rounded-md`}>
 						<p className='mr-1'>Run</p>
 						<VscPlay />
 					</div>

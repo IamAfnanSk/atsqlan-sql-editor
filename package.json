@@ -12,12 +12,15 @@
     "@monaco-editor/react": "^4.4.6",
     "@tailwindcss/forms": "^0.5.3",
     "next": "12.3.1",
+    "papaparse": "^5.3.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-reflex": "^4.0.9"
+    "react-reflex": "^4.0.9",
+    "react-table": "^7.8.0"
   },
   "devDependencies": {
     "@types/node": "18.7.20",
+    "@types/papaparse": "^5.3.5",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
     "autoprefixer": "^10.4.12",

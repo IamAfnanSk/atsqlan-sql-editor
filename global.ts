@@ -19,6 +19,8 @@ export const initialEditorState: TEditorState = {
 
 export type TSidebarLinks = 'queries' | 'tables' | 'about'
 
+export type TQueryOrSaveState = 'idle' | 'running' | 'error' | 'success'
+
 type TSQLQuery = {
 	query: string
 	dataURL: string
