@@ -1,14 +1,15 @@
 import Header from './Header'
-import Sidebar from './SidebarNavigation'
+import SidebarNavigation from './Sidebar/SidebarNavigation'
 
 type TProps = {
 	children?: React.ReactNode
+	showSidebar?: boolean
 }
 
-const Layout: React.FC<TProps> = ({ children }) => {
+const Layout: React.FC<TProps> = ({ children, showSidebar }) => {
 	return (
 		<section className='h-screen flex'>
-			<Sidebar />
+			{showSidebar && <SidebarNavigation />}
 			<section className='flex-1'>
 				<Header />
 				<main

@@ -1,6 +1,6 @@
 import { AiOutlineFileAdd } from 'react-icons/ai'
 import { MdOutlineClose } from 'react-icons/md'
-import { useWebsiteContext } from '../hooks/useWebsiteContext'
+import { useWebsiteContext } from '../../hooks/useWebsiteContext'
 
 const EditorTabs: React.FC = () => {
 	const { editorState, setEditorState } = useWebsiteContext()

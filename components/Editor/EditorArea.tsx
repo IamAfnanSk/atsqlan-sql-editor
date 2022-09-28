@@ -1,6 +1,6 @@
 import Editor, { OnMount } from '@monaco-editor/react'
 import { VscSave, VscPlay } from 'react-icons/vsc'
-import { useWebsiteContext } from '../hooks/useWebsiteContext'
+import { useWebsiteContext } from '../../hooks/useWebsiteContext'
 import EditorTabs from './EditorTabs'
 
 const EditorArea: React.FC = () => {

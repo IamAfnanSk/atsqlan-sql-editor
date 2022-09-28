@@ -1,6 +1,6 @@
 import { AiOutlineConsoleSql, AiOutlineInfo, AiOutlineLogout, AiOutlineTable } from 'react-icons/ai'
-import { useWebsiteContext } from '../hooks/useWebsiteContext'
-import { TSidebarLinks } from '../pages/global'
+import { useWebsiteContext } from '../../hooks/useWebsiteContext'
+import { TSidebarLinks } from '../../pages/global'
 
 type TSidebarNavLink = {
 	name: string
@@ -8,8 +8,8 @@ type TSidebarNavLink = {
 	slug: TSidebarLinks
 }
 
-const Sidebar: React.FC = () => {
-	const { selectedSidebar } = useWebsiteContext()
+const SidebarNavigation: React.FC = () => {
+	const { selectedSidebar, setSelectedSidebar } = useWebsiteContext()
 
 	const sidebarNavLinks: TSidebarNavLink[] = [
 		{
@@ -38,7 +38,11 @@ const Sidebar: React.FC = () => {
 						const isSelected = selectedSidebar === link.slug
 
 						return (
-							<div key={index} className={`flex flex-col items-center cursor-pointer rounded-md py-2 hover:bg-gray-100 ${isSelected ? 'bg-gray-100' : ''}`}>
+							<div
+								onClick={() => setSelectedSidebar(link.slug)}
+								key={index}
+								className={`flex flex-col items-center cursor-pointer rounded-md py-2 hover:bg-gray-100 ${isSelected ? 'bg-gray-100' : ''}`}
+							>
 								<span className='text-2xl'>{link.icon}</span>
 								<p className='text-xs px-2'>{link.name}</p>
 							</div>
@@ -59,4 +63,4 @@ const Sidebar: React.FC = () => {
 	)
 }
 
-export default Sidebar
+export default SidebarNavigation

@@ -2,12 +2,11 @@ import 'react-reflex/styles.css'
 import type { NextPage } from 'next'
 import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex'
 import Layout from '../components/Layout'
-import QuerySelector from '../components/QuerySelector'
-import Tables from '../components/Tables'
 import WebsiteContext from '../hooks/useWebsiteContext'
 import { useState } from 'react'
-import EditorArea from '../components/EditorArea'
+import EditorArea from '../components/Editor/EditorArea'
 import { TEditorState, initialEditorState, TSidebarLinks } from './global'
+import Sidebar from '../components/Sidebar/Sidebar'
 
 const Home: NextPage = () => {
 	const [editorState, setEditorState] = useState<TEditorState>(initialEditorState)
@@ -22,13 +21,10 @@ const Home: NextPage = () => {
 				setSelectedSidebar
 			}}
 		>
-			<Layout>
+			<Layout showSidebar={true}>
 				<ReflexContainer orientation='vertical' className='h-full'>
 					<ReflexElement minSize={200} size={300} maxSize={350}>
-						<div className='px-4 py-3 space-y-3'>
-							<QuerySelector />
-							<Tables />
-						</div>
+						<Sidebar />
 					</ReflexElement>
 
 					<ReflexSplitter />
