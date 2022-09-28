@@ -7,16 +7,19 @@ import Tables from '../components/Tables'
 import WebsiteContext from '../hooks/useWebsiteContext'
 import { useState } from 'react'
 import EditorArea from '../components/EditorArea'
-import { EditorState, initialEditorState } from './global'
+import { TEditorState, initialEditorState, TSidebarLinks } from './global'
 
 const Home: NextPage = () => {
-	const [editorState, setEditorState] = useState<EditorState>(initialEditorState)
+	const [editorState, setEditorState] = useState<TEditorState>(initialEditorState)
+	const [selectedSidebar, setSelectedSidebar] = useState<TSidebarLinks>('query')
 
 	return (
 		<WebsiteContext.Provider
 			value={{
 				editorState,
-				setEditorState
+				setEditorState,
+				selectedSidebar,
+				setSelectedSidebar
 			}}
 		>
 			<Layout>
