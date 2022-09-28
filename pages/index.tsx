@@ -37,7 +37,13 @@ const Home: NextPage = () => {
 					<ReflexSplitter />
 
 					<ReflexElement>
-						<EditorArea />
+						<ReflexContainer orientation='horizontal'>
+							<ReflexElement>
+								<EditorArea />
+							</ReflexElement>
+							<ReflexSplitter />
+							<ReflexElement minSize={350} size={400} maxSize={450}></ReflexElement>
+						</ReflexContainer>
 					</ReflexElement>
 				</ReflexContainer>
 			</Layout>
