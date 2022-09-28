@@ -1,13 +1,32 @@
+import { useWebsiteContext } from '../hooks/useWebsiteContext'
+import { SQLQueries } from '../pages/global'
+
 const QuerySelector: React.FC = () => {
+	const { selectedQueryIndex, setSelectedQueryIndex, editorState } = useWebsiteContext()
+
 	return (
 		<div>
 			<label htmlFor='query' className='block text-sm font-medium text-gray-700'>
 				Select query
 			</label>
-			<select defaultValue={1} id='query' name='query' className='mt-1 cursor-pointer block w-full text-base shadow-sm outline-none focus:ring-0 border-none sm:text-sm rounded-md'>
-				<option value={0}>SELECT *</option>
-				<option value={1}>SELECT * WHERE</option>
-				<option value={2}>SELECT * FROM</option>
+			<select
+				onChange={(e) => {
+					const newSelectedIndex = parseInt(e.target.value)
+					setSelectedQueryIndex(newSelectedIndex)
+					editorState.editor?.setValue(SQLQueries[newSelectedIndex])
+				}}
+				value={selectedQueryIndex}
+				id='query'
+				name='query'
+				className='mt-1 cursor-pointer block w-full text-base shadow-sm outline-none focus:ring-0 border-none sm:text-sm rounded-md'
+			>
+				{SQLQueries.map((query, index) => {
+					return (
+						<option key={index} value={index}>
+							{query}
+						</option>
+					)
+				})}
 			</select>
 		</div>
 	)

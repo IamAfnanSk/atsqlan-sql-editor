@@ -17,4 +17,6 @@ export const initialEditorState: TEditorState = {
 	monaco: null
 }
 
-export type TSidebarLinks = 'query' | 'tables' | 'about'
+export type TSidebarLinks = 'queries' | 'tables' | 'about'
+
+export const SQLQueries = ['SELECT * FROM test_table;', 'SELECT name FROM test_table;', `SELECT * FROM test_table WHERE name = 'Afnan';`]

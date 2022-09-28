@@ -6,6 +6,8 @@ type TWebsiteContext = {
 	setEditorState: React.Dispatch<React.SetStateAction<TEditorState>>
 	selectedSidebar: TSidebarLinks
 	setSelectedSidebar: React.Dispatch<React.SetStateAction<TSidebarLinks>>
+	selectedQueryIndex: number
+	setSelectedQueryIndex: React.Dispatch<React.SetStateAction<number>>
 }
 
 const WebsiteContext = createContext<TWebsiteContext | null>(null)

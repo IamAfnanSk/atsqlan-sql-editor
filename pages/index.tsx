@@ -10,7 +10,8 @@ import Sidebar from '../components/Sidebar/Sidebar'
 
 const Home: NextPage = () => {
 	const [editorState, setEditorState] = useState<TEditorState>(initialEditorState)
-	const [selectedSidebar, setSelectedSidebar] = useState<TSidebarLinks>('query')
+	const [selectedQueryIndex, setSelectedQueryIndex] = useState<number>(0)
+	const [selectedSidebar, setSelectedSidebar] = useState<TSidebarLinks>('queries')
 
 	return (
 		<WebsiteContext.Provider
@@ -18,7 +19,9 @@ const Home: NextPage = () => {
 				editorState,
 				setEditorState,
 				selectedSidebar,
-				setSelectedSidebar
+				setSelectedSidebar,
+				selectedQueryIndex,
+				setSelectedQueryIndex
 			}}
 		>
 			<Layout showSidebar={true}>

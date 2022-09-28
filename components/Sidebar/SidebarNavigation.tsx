@@ -13,9 +13,9 @@ const SidebarNavigation: React.FC = () => {
 
 	const sidebarNavLinks: TSidebarNavLink[] = [
 		{
-			name: 'Query',
+			name: 'Queries',
 			icon: <AiOutlineConsoleSql />,
-			slug: 'query'
+			slug: 'queries'
 		},
 		{
 			name: 'Tables',

@@ -8,7 +8,7 @@ const Sidebar: React.FC = () => {
 
 	return (
 		<div className='px-4 py-3 space-y-3'>
-			{selectedSidebar === 'query' && <QuerySelector />}
+			{selectedSidebar === 'queries' && <QuerySelector />}
 			{selectedSidebar === 'tables' && <Tables />}
 			{selectedSidebar === 'about' && <About />}
 		</div>
