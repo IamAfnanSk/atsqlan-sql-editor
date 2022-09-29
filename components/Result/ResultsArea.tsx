@@ -29,6 +29,7 @@ const ResultsArea: React.FC = () => {
 						}
 					})
 
+					// Last parsed array item is empty
 					data.pop()
 
 					const rows = data.slice(1).map((row: string[]) => {
@@ -41,6 +42,7 @@ const ResultsArea: React.FC = () => {
 					setColumns(columns)
 					setData(rows)
 					setQueryState('success')
+
 					const endTime = Date.now()
 					const secondsTakenToShowTable = (endTime - startTime) / 1000
 					setTimeToResult(secondsTakenToShowTable)

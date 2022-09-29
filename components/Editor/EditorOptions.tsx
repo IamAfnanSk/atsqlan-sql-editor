@@ -10,7 +10,7 @@ type TProps = {
 }
 
 const EditorOptions: React.FC<TProps> = ({ fScreenHandle }) => {
-	const { setEditorState, setQueryState } = useWebsiteContext()
+	const { editorState, setQueryState, queryState } = useWebsiteContext()
 
 	return (
 		<div className='mr-4 text-xs space-x-2 flex items-center'>
@@ -18,21 +18,19 @@ const EditorOptions: React.FC<TProps> = ({ fScreenHandle }) => {
 				<p className='mr-1'>Fullscreen</p>
 				<BsFullscreen />
 			</div>
+
 			<div
 				onClick={() => {
-					setEditorState((editorState) => {
-						const currentValue = editorState.editor?.getValue()
-						const formattedCode = format(currentValue || '')
-						editorState.editor?.setValue(formattedCode)
-
-						return { ...editorState }
-					})
+					const currentValue = editorState.editor?.getValue()
+					const formattedCode = format(currentValue || '')
+					editorState.editor?.setValue(formattedCode)
 				}}
 				className={`cursor-pointer py-1 px-2 flex justify-center items-center bg-white shadow-sm rounded-md`}
 			>
 				<p className='mr-1'>Format</p>
 				<BsStars />
 			</div>
+
 			<div
 				onClick={() => {
 					infoNotification('Saving file...')
@@ -45,7 +43,17 @@ const EditorOptions: React.FC<TProps> = ({ fScreenHandle }) => {
 				<p className='mr-1'>Save</p>
 				<VscSave />
 			</div>
-			<div onClick={() => setQueryState('running')} className={`cursor-pointer py-1 px-2 flex justify-center items-center bg-indigo-700 text-white rounded-md`}>
+
+			<div
+				onClick={() => {
+					if (queryState !== 'running') {
+						setQueryState('running')
+					} else {
+						infoNotification('Please wait, A query is already being executed!')
+					}
+				}}
+				className={`cursor-pointer py-1 px-2 flex justify-center items-center bg-indigo-700 text-white rounded-md`}
+			>
 				<p className='mr-1'>Run</p>
 				<VscPlay />
 			</div>

@@ -53,7 +53,7 @@ const EditorTabs: React.FC = () => {
 				<div
 					onClick={() => {
 						setEditorState((state) => {
-							const newTabName = `Editor tab ${Math.round(Math.random() * 10000)}`
+							const newTabName = `Tab ${Date.now()}`
 							return { ...state, activeTabName: newTabName, tabs: [...state.tabs, newTabName] }
 						})
 					}}
