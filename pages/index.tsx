@@ -8,6 +8,7 @@ import EditorArea from '../components/Editor/EditorArea'
 import { TEditorState, initialEditorState, TSidebarLinks, TQueryState } from '../global'
 import Sidebar from '../components/Sidebar/Sidebar'
 import ResultsArea from '../components/Result/ResultsArea'
+import Head from 'next/head'
 
 const Home: NextPage = () => {
 	const [editorState, setEditorState] = useState<TEditorState>(initialEditorState)
@@ -51,6 +52,11 @@ const Home: NextPage = () => {
 					</ReflexElement>
 				</ReflexContainer>
 			</Layout>
+
+			<Head>
+				<title>SQL Editor by Afnan</title>
+				<meta name='description' content='A Frontend focused SQL editor to execute SQL queries' />
+			</Head>
 		</WebsiteContext.Provider>
 	)
 }
