@@ -51,6 +51,16 @@ This is an frontend app for data users where they can use many listed functional
 - Copy JSON data
 - Awesome UX and UI
 
+## Load time
+
+<img width="887" alt="Load time" src="https://user-images.githubusercontent.com/48408572/193139717-fedfe65c-da15-4f2a-8e2c-e3d664e502a4.png">
+
+- Measured with lighthouse
+
+## Optimization
+
+I optimized this app by memoizing things where needed like for the result table which made my app to not crash for large number of rows.
+
 ## Author
 
 # Afnan Shaikh
