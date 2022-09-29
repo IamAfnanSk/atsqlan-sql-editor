@@ -18,7 +18,7 @@ type TProps = {
 
 const Table: React.FC<TProps> = ({ columns: columnsData, data: rowsData, timeToResult: timeTaken }) => {
 	const [dataToProcess, setDataToProcess] = useState(rowsData)
-	const [limitResults, setLimitResults] = useState(false)
+	const [limitResults, setLimitResults] = useState(true)
 
 	const timeToResult = useMemo(() => timeTaken, [timeTaken])
 
