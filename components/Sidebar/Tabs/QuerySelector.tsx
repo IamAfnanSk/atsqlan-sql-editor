@@ -35,6 +35,10 @@ const QuerySelector: React.FC = () => {
 					)
 				})}
 			</select>
+
+			<p className='mt-4 text-sm'>
+				Change query from here and click <span className='font-bold'>Run</span> to get different tables in the result
+			</p>
 		</div>
 	)
 }
