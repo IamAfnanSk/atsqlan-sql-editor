@@ -54,7 +54,7 @@ This is an frontend app for data users where they can use many listed functional
 
 ## Load time
 
-<img width="887" alt="Load time" src="https://user-images.githubusercontent.com/48408572/193139717-fedfe65c-da15-4f2a-8e2c-e3d664e502a4.png">
+<img width="887" alt="Load time" src="https://user-images.githubusercontent.com/48408572/193141409-5f572f54-4997-4a50-9c8c-b12db243f1c9.png">
 
 - Measured with lighthouse
 
