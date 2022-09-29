@@ -46,15 +46,10 @@ const Table: React.FC<TProps> = ({ columns: columnsData, data: rowsData, timeToR
 	const fScreenHandle = useFullScreenHandle()
 
 	return (
-		<div className='p-4 h-full w-full flex justify-between flex-col'>
-			<div
-				className='relative w-full overflow-scroll rounded-lg'
-				style={{
-					height: 'calc(100% - 2rem)'
-				}}
-			>
-				<FullScreen className='overflow-scroll' handle={fScreenHandle}>
-					<table {...getTableProps()} className='divide-y absolute w-full h-full divide-gray-300 text-left'>
+		<div className='p-4 h-full w-full flex space-y-2 flex-col'>
+			<div className='overflow-scroll relative rounded-lg'>
+				<FullScreen className={`${fScreenHandle.active ? 'overflow-scroll' : ''}`} handle={fScreenHandle}>
+					<table {...getTableProps()} className='divide-y divide-gray-300 text-left'>
 						<thead className='bg-white'>
 							{headerGroups.map((headerGroup) => (
 								<tr {...headerGroup.getHeaderGroupProps()} className='divide-x divide-gray-200'>
@@ -62,7 +57,7 @@ const Table: React.FC<TProps> = ({ columns: columnsData, data: rowsData, timeToR
 										<th
 											{...column.getHeaderProps((column as any).getSortByToggleProps())}
 											scope='col'
-											className='sticky top-0 z-10 hidden border-b border-gray-300 bg-gray-50 bg-opacity-75 px-4 py-1.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter lg:table-cell'
+											className='sticky top-0 z-10 border-b border-gray-300 bg-gray-50 bg-opacity-75 px-4 py-1.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter table-cell'
 										>
 											<p className='flex items-center space-x-2'>
 												<span>{column.render('Header')}</span>
@@ -104,7 +99,7 @@ const Table: React.FC<TProps> = ({ columns: columnsData, data: rowsData, timeToR
 
 					{rowsData.length > 50 && (
 						<div>
-							<div className='relative flex items-start'>
+							<div className='flex items-start'>
 								<div className='flex items-center h-5'>
 									<input
 										checked={limitResults}

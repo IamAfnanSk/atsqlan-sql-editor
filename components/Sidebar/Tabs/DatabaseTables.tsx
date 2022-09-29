@@ -37,7 +37,7 @@ const DatabaseTables: React.FC = () => {
 						return (
 							<div className='px-3 flex items-center py-0.5 hover:bg-white rounded-md cursor-pointer' key={index}>
 								<CgDatabase className='flex-shrink-0' />
-								<p className='text-sm ml-2 truncate'>DUMMY_TABLE_{index + 1}</p>
+								<p className='text-sm ml-2 truncate'>DUMMY_TABLE_{index + 1}_FAKE</p>
 							</div>
 						)
 					})}

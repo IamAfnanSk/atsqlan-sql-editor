@@ -25,7 +25,7 @@ This is an frontend app for data users where they can use many listed functional
 - react-full-screen
 - react-table
 - react-hot-toast
-- react-reflex
+- allotment
 - sql-formatter
 
 ## Features - (The ones which were asked)

@@ -11,13 +11,13 @@
   "dependencies": {
     "@monaco-editor/react": "^4.4.6",
     "@tailwindcss/forms": "^0.5.3",
+    "allotment": "^1.17.0",
     "next": "12.3.1",
     "papaparse": "^5.3.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-full-screen": "^1.1.1",
     "react-hot-toast": "^2.4.0",
-    "react-reflex": "^4.0.9",
     "react-table": "^7.8.0",
     "sql-formatter": "^10.7.2"
   },

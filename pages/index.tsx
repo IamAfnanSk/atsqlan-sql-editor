@@ -1,6 +1,4 @@
-import 'react-reflex/styles.css'
 import type { NextPage } from 'next'
-import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex'
 import Layout from '../components/Layout'
 import WebsiteContext from '../hooks/useWebsiteContext'
 import { useState } from 'react'
@@ -9,6 +7,7 @@ import { TEditorState, initialEditorState, TSidebarLinks, TQueryState } from '..
 import Sidebar from '../components/Sidebar/Sidebar'
 import ResultsArea from '../components/Result/ResultsArea'
 import Head from 'next/head'
+import { Allotment } from 'allotment'
 
 const Home: NextPage = () => {
 	const [editorState, setEditorState] = useState<TEditorState>(initialEditorState)
@@ -30,27 +29,22 @@ const Home: NextPage = () => {
 			}}
 		>
 			<Layout showSidebar={true}>
-				<ReflexContainer orientation='vertical' className='h-full'>
-					<ReflexElement minSize={300} size={320} maxSize={350}>
+				<Allotment>
+					<Allotment.Pane minSize={300} maxSize={350} snap>
 						<Sidebar />
-					</ReflexElement>
+					</Allotment.Pane>
 
-					<ReflexSplitter />
-
-					<ReflexElement>
-						<ReflexContainer orientation='horizontal'>
-							<ReflexElement>
+					<Allotment.Pane>
+						<Allotment vertical>
+							<Allotment.Pane>
 								<EditorArea />
-							</ReflexElement>
-
-							<ReflexSplitter />
-
-							<ReflexElement minSize={350} size={400} maxSize={450}>
+							</Allotment.Pane>
+							<Allotment.Pane minSize={350} maxSize={450}>
 								<ResultsArea />
-							</ReflexElement>
-						</ReflexContainer>
-					</ReflexElement>
-				</ReflexContainer>
+							</Allotment.Pane>
+						</Allotment>
+					</Allotment.Pane>
+				</Allotment>
 			</Layout>
 
 			<Head>
