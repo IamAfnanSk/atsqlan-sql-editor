@@ -1,5 +1,5 @@
 import { useContext, createContext } from 'react'
-import { TEditorState, TQueryOrSaveState, TSidebarLinks } from '../global'
+import { TEditorState, TQueryState, TSidebarLinks } from '../global'
 
 type TWebsiteContext = {
 	editorState: TEditorState
@@ -8,8 +8,8 @@ type TWebsiteContext = {
 	setSelectedSidebar: React.Dispatch<React.SetStateAction<TSidebarLinks>>
 	selectedQueryIndex: number
 	setSelectedQueryIndex: React.Dispatch<React.SetStateAction<number>>
-	queryState: TQueryOrSaveState
-	setQueryState: React.Dispatch<React.SetStateAction<TQueryOrSaveState>>
+	queryState: TQueryState
+	setQueryState: React.Dispatch<React.SetStateAction<TQueryState>>
 }
 
 const WebsiteContext = createContext<TWebsiteContext | null>(null)

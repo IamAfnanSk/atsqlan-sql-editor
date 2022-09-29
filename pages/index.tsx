@@ -3,21 +3,17 @@ import type { NextPage } from 'next'
 import { ReflexContainer, ReflexElement, ReflexSplitter } from 'react-reflex'
 import Layout from '../components/Layout'
 import WebsiteContext from '../hooks/useWebsiteContext'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import EditorArea from '../components/Editor/EditorArea'
-import { TEditorState, initialEditorState, TSidebarLinks, SQLQueries, TQueryOrSaveState } from '../global'
+import { TEditorState, initialEditorState, TSidebarLinks, TQueryState } from '../global'
 import Sidebar from '../components/Sidebar/Sidebar'
-import ResultsArea from '../components/ResultsArea'
+import ResultsArea from '../components/Result/ResultsArea'
 
 const Home: NextPage = () => {
 	const [editorState, setEditorState] = useState<TEditorState>(initialEditorState)
 	const [selectedQueryIndex, setSelectedQueryIndex] = useState<number>(0)
 	const [selectedSidebar, setSelectedSidebar] = useState<TSidebarLinks>('queries')
-	const [queryState, setQueryState] = useState<TQueryOrSaveState>('idle')
-
-	useEffect(() => {
-		editorState.editor?.setValue(SQLQueries[selectedQueryIndex].query)
-	}, [editorState.editor, selectedQueryIndex])
+	const [queryState, setQueryState] = useState<TQueryState>('idle')
 
 	return (
 		<WebsiteContext.Provider
@@ -45,7 +41,9 @@ const Home: NextPage = () => {
 							<ReflexElement>
 								<EditorArea />
 							</ReflexElement>
+
 							<ReflexSplitter />
+
 							<ReflexElement minSize={350} size={400} maxSize={450}>
 								<ResultsArea />
 							</ReflexElement>

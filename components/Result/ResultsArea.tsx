@@ -1,15 +1,17 @@
 import Papa from 'papaparse'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AiOutlinePlayCircle } from 'react-icons/ai'
 import { BiError } from 'react-icons/bi'
-import { SQLQueries } from '../global'
-import { useWebsiteContext } from '../hooks/useWebsiteContext'
+import { Column } from 'react-table'
+import { SQLQueries } from '../../global'
+import { useWebsiteContext } from '../../hooks/useWebsiteContext'
+import { errorNotification } from '../../utils/toast'
 import Table from './Table'
 
 const ResultsArea: React.FC = () => {
 	const { queryState, selectedQueryIndex, setQueryState } = useWebsiteContext()
-	const [columns, setColumns] = useState([])
-	const [data, setData] = useState([])
+	const [columns, setColumns] = useState<Column[]>([])
+	const [data, setData] = useState<any[]>([])
 	const [timeToResult, setTimeToResult] = useState<number>(0)
 
 	useEffect(() => {
@@ -29,7 +31,7 @@ const ResultsArea: React.FC = () => {
 
 					data.pop()
 
-					const rows: any = data.slice(1).map((row: string[]) => {
+					const rows = data.slice(1).map((row: string[]) => {
 						return row.reduce((acc: any, curr, index: number) => {
 							acc[columns[index].accessor] = curr
 							return acc
@@ -49,6 +51,10 @@ const ResultsArea: React.FC = () => {
 			}
 			fetchData()
 		}
+
+		if (queryState === 'error') {
+			errorNotification('Something went wrong executing the query :(')
+		}
 	}, [queryState, selectedQueryIndex, setQueryState])
 
 	return (
@@ -61,13 +67,16 @@ const ResultsArea: React.FC = () => {
 					</p>
 				</div>
 			)}
+
 			{queryState === 'running' && (
 				<div className='h-full w-full flex flex-col items-center justify-center'>
 					<div className='animate-ping rounded-full bg-gray-900 w-5 h-5'></div>
 					<p className='text-lg mt-3'>Executing query please wait</p>
 				</div>
 			)}
+
 			{queryState === 'success' && <Table timeToResult={timeToResult} columns={columns} data={data} />}
+
 			{queryState === 'error' && (
 				<div className='h-full w-full flex flex-col items-center justify-center'>
 					<BiError className='text-4xl' />

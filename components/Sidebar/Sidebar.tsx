@@ -1,7 +1,7 @@
 import { useWebsiteContext } from '../../hooks/useWebsiteContext'
-import About from '../About'
-import QuerySelector from '../QuerySelector'
-import DatabaseTables from '../DatabaseTables'
+import About from './Tabs/About'
+import QuerySelector from './Tabs/QuerySelector'
+import DatabaseTables from './Tabs/DatabaseTables'
 
 const Sidebar: React.FC = () => {
 	const { selectedSidebar } = useWebsiteContext()
@@ -9,7 +9,9 @@ const Sidebar: React.FC = () => {
 	return (
 		<div className='px-4 py-3 space-y-3'>
 			{selectedSidebar === 'queries' && <QuerySelector />}
+
 			{selectedSidebar === 'tables' && <DatabaseTables />}
+
 			{selectedSidebar === 'about' && <About />}
 		</div>
 	)

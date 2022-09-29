@@ -19,7 +19,7 @@ export const initialEditorState: TEditorState = {
 
 export type TSidebarLinks = 'queries' | 'tables' | 'about'
 
-export type TQueryOrSaveState = 'idle' | 'running' | 'error' | 'success'
+export type TQueryState = 'idle' | 'running' | 'error' | 'success'
 
 type TSQLQuery = {
 	query: string
@@ -40,3 +40,5 @@ export const SQLQueries: TSQLQuery[] = [
 		dataURL: 'https://raw.githubusercontent.com/graphql-compose/graphql-compose-examples/master/examples/northwind/data/csv/orders.csv'
 	}
 ]
+
+export const LIMIT_FOR_ROWS = 50

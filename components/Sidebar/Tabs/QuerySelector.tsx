@@ -1,8 +1,15 @@
-import { useWebsiteContext } from '../hooks/useWebsiteContext'
-import { SQLQueries } from '../global'
+import { useWebsiteContext } from '../../../hooks/useWebsiteContext'
+import { SQLQueries } from '../../../global'
+import { infoNotification } from '../../../utils/toast'
+import { useEffect } from 'react'
 
 const QuerySelector: React.FC = () => {
-	const { selectedQueryIndex, setSelectedQueryIndex } = useWebsiteContext()
+	const { selectedQueryIndex, setSelectedQueryIndex, editorState } = useWebsiteContext()
+
+	// Update IDE value on query change
+	useEffect(() => {
+		editorState.editor?.setValue(SQLQueries[selectedQueryIndex].query)
+	}, [editorState.editor, selectedQueryIndex])
 
 	return (
 		<div>
@@ -13,6 +20,7 @@ const QuerySelector: React.FC = () => {
 				onChange={(e) => {
 					const newSelectedIndex = parseInt(e.target.value)
 					setSelectedQueryIndex(newSelectedIndex)
+					infoNotification('Click on Run to execute new query :)')
 				}}
 				value={selectedQueryIndex}
 				id='query'

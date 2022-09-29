@@ -1,21 +1,25 @@
 /* eslint-disable react/jsx-key */
-import { useSortBy, useTable } from 'react-table'
-import { BsArrowCounterclockwise, BsFullscreen } from 'react-icons/bs'
-import { TbLayoutRows, TbLayoutColumns } from 'react-icons/tb'
+import { Column, useSortBy, useTable } from 'react-table'
 import { FaSort, FaSortDown, FaSortUp } from 'react-icons/fa'
 import { FullScreen, useFullScreenHandle } from 'react-full-screen'
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
+import TableFooterWithOptions from './TableFooterWithOptions'
+import { LIMIT_FOR_ROWS } from '../../global'
 
 type TProps = {
-	columns: any
-	data: any
+	columns: Column[]
+	data: any[]
 	timeToResult: number
 }
 
 const Table: React.FC<TProps> = ({ columns: columnsData, data: rowsData, timeToResult: timeTaken }) => {
-	const columns = useMemo(() => columnsData, [columnsData])
-	const data = useMemo(() => rowsData, [rowsData])
+	const [dataToProcess, setDataToProcess] = useState(rowsData)
+	const [limitResults, setLimitResults] = useState(false)
+
 	const timeToResult = useMemo(() => timeTaken, [timeTaken])
+
+	const columns = useMemo(() => columnsData, [columnsData])
+	const data = useMemo(() => dataToProcess, [dataToProcess])
 
 	const { headerGroups, rows, prepareRow, getTableProps, getTableBodyProps } = useTable(
 		{
@@ -24,6 +28,14 @@ const Table: React.FC<TProps> = ({ columns: columnsData, data: rowsData, timeToR
 		},
 		useSortBy
 	)
+
+	useEffect(() => {
+		if (limitResults) {
+			setDataToProcess(rowsData.slice(0, LIMIT_FOR_ROWS))
+		} else {
+			setDataToProcess(rowsData)
+		}
+	}, [limitResults, rowsData])
 
 	const fScreenHandle = useFullScreenHandle()
 
@@ -42,13 +54,13 @@ const Table: React.FC<TProps> = ({ columns: columnsData, data: rowsData, timeToR
 								<tr {...headerGroup.getHeaderGroupProps()} className='divide-x divide-gray-200'>
 									{headerGroup.headers.map((column) => (
 										<th
-											{...column.getHeaderProps(column.getSortByToggleProps())}
+											{...column.getHeaderProps((column as any).getSortByToggleProps())}
 											scope='col'
 											className='sticky top-0 z-10 hidden border-b border-gray-300 bg-gray-50 bg-opacity-75 px-4 py-1.5 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter lg:table-cell'
 										>
 											<p className='flex items-center space-x-2'>
 												<span>{column.render('Header')}</span>
-												<span>{column.isSorted ? column.isSortedDesc ? <FaSortDown /> : <FaSortUp /> : <FaSort />}</span>
+												<span>{(column as any).isSorted ? (column as any).isSortedDesc ? <FaSortDown /> : <FaSortUp /> : <FaSort />}</span>
 											</p>
 										</th>
 									))}
@@ -56,7 +68,7 @@ const Table: React.FC<TProps> = ({ columns: columnsData, data: rowsData, timeToR
 							))}
 						</thead>
 						<tbody {...getTableBodyProps()} className='divide-y divide-gray-200 bg-white'>
-							{rows.map((row, i) => {
+							{rows.map((row) => {
 								prepareRow(row)
 								return (
 									<tr {...row.getRowProps()} className='divide-x divide-gray-200'>
@@ -75,28 +87,15 @@ const Table: React.FC<TProps> = ({ columns: columnsData, data: rowsData, timeToR
 				</FullScreen>
 			</div>
 
-			<div>
-				<div className='flex justify-between items-center'>
-					<div>
-						<BsFullscreen onClick={() => fScreenHandle.enter()} className='p-1.5 rounded-md bg-white text-black stroke-1 cursor-pointer text-2xl' />
-					</div>
-
-					<div className='flex items-center space-x-2'>
-						<div className='flex items-center space-x-1'>
-							<BsArrowCounterclockwise />
-							<p className='text-sm'>{timeToResult}s</p>
-						</div>
-						<div className='flex items-center space-x-1'>
-							<TbLayoutColumns />
-							<p className='text-sm'>{columns.length}</p>
-						</div>
-						<div className='flex items-center space-x-1'>
-							<TbLayoutRows />
-							<p className='text-sm'>{data.length}</p>
-						</div>
-					</div>
-				</div>
-			</div>
+			<TableFooterWithOptions
+				columnsLength={columns.length}
+				filteredRowsLength={rows.length}
+				allRowsLength={rowsData.length}
+				fScreenHandle={fScreenHandle}
+				timeToResult={timeToResult}
+				limitResults={limitResults}
+				setLimitResults={setLimitResults}
+			/>
 		</div>
 	)
 }
