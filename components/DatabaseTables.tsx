@@ -1,7 +1,7 @@
 import { AiOutlineSearch, AiOutlineSortAscending } from 'react-icons/ai'
 import { CgDatabase } from 'react-icons/cg'
 
-const Tables: React.FC = () => {
+const DatabaseTables: React.FC = () => {
 	return (
 		<div>
 			<label htmlFor='search' className='block text-sm font-medium text-gray-700'>
@@ -46,4 +46,4 @@ const Tables: React.FC = () => {
 	)
 }
 
-export default Tables
+export default DatabaseTables

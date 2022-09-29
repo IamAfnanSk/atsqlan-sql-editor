@@ -1,20 +1,22 @@
 import Papa from 'papaparse'
 import { useEffect, useMemo, useState } from 'react'
+import { AiOutlinePlayCircle } from 'react-icons/ai'
+import { BiError } from 'react-icons/bi'
 import { SQLQueries } from '../global'
 import { useWebsiteContext } from '../hooks/useWebsiteContext'
+import Table from './Table'
 
 const ResultsArea: React.FC = () => {
 	const { queryState, selectedQueryIndex, setQueryState } = useWebsiteContext()
-	const [columnsData, setColumnsData] = useState([])
-	const [rowsData, setRowsData] = useState([])
-
-	const columns = useMemo(() => columnsData, [columnsData])
-	const data = useMemo(() => rowsData, [rowsData])
+	const [columns, setColumns] = useState([])
+	const [data, setData] = useState([])
+	const [timeToResult, setTimeToResult] = useState<number>(0)
 
 	useEffect(() => {
 		if (queryState === 'running') {
 			const fetchData = async () => {
 				try {
+					const startTime = Date.now()
 					const rawData = await (await fetch(SQLQueries[selectedQueryIndex].dataURL)).text()
 					const data = Papa.parse<any>(rawData).data
 
@@ -25,6 +27,8 @@ const ResultsArea: React.FC = () => {
 						}
 					})
 
+					data.pop()
+
 					const rows: any = data.slice(1).map((row: string[]) => {
 						return row.reduce((acc: any, curr, index: number) => {
 							acc[columns[index].accessor] = curr
@@ -32,25 +36,45 @@ const ResultsArea: React.FC = () => {
 						}, {})
 					})
 
-					setColumnsData(columns)
-					setRowsData(rows)
+					setColumns(columns)
+					setData(rows)
+					setQueryState('success')
+					const endTime = Date.now()
+					const secondsTakenToShowTable = (endTime - startTime) / 1000
+					setTimeToResult(secondsTakenToShowTable)
 				} catch (error) {
 					console.log(error)
 					setQueryState('error')
 				}
 			}
 			fetchData()
-			setQueryState('success')
 		}
 	}, [queryState, selectedQueryIndex, setQueryState])
 
 	return (
-		<div>
-			{queryState === 'idle' && <h1>Run query</h1>}
-			{queryState === 'running' && <h1>Loading</h1>}
-			{queryState === 'success' && <h1>Data</h1>}
-			{queryState === 'error' && <h1>Error occoured</h1>}
-		</div>
+		<>
+			{queryState === 'idle' && (
+				<div className='h-full w-full flex flex-col items-center justify-center'>
+					<AiOutlinePlayCircle className='text-4xl' />
+					<p className='text-lg mt-3'>
+						Click on <span className='font-bold'>&apos;Run&apos;</span> from top right area to execute the query
+					</p>
+				</div>
+			)}
+			{queryState === 'running' && (
+				<div className='h-full w-full flex flex-col items-center justify-center'>
+					<div className='animate-ping rounded-full bg-gray-900 w-5 h-5'></div>
+					<p className='text-lg mt-3'>Executing query please wait</p>
+				</div>
+			)}
+			{queryState === 'success' && <Table timeToResult={timeToResult} columns={columns} data={data} />}
+			{queryState === 'error' && (
+				<div className='h-full w-full flex flex-col items-center justify-center'>
+					<BiError className='text-4xl' />
+					<p className='text-lg mt-3'>Ops! Some error occoured, Please try running a different query or check your network.</p>
+				</div>
+			)}
+		</>
 	)
 }
 
