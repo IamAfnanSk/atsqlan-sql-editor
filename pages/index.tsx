@@ -30,7 +30,7 @@ const Home: NextPage = () => {
 		>
 			<Layout showSidebar={true}>
 				<Allotment>
-					<Allotment.Pane minSize={300} maxSize={350} snap>
+					<Allotment.Pane minSize={250} maxSize={300}>
 						<Sidebar />
 					</Allotment.Pane>
 

@@ -2,37 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body .reflex-container.vertical > .reflex-splitter,
-body .reflex-container.horizontal > .reflex-splitter {
-	transition: 0.1s linear !important;
-	@apply bg-gray-300 border-none;
-}
-
-body .reflex-container.vertical > .reflex-splitter {
-	@apply w-[2px];
-}
-
-body .reflex-container.horizontal > .reflex-splitter {
-	@apply h-[2px];
-}
-
-body .reflex-container.vertical > .reflex-splitter:hover,
-body .reflex-container.vertical > .reflex-splitter.active,
-body .reflex-container.horizontal > .reflex-splitter:hover,
-body .reflex-container.horizontal > .reflex-splitter.active {
-	@apply bg-gray-500 border-none;
-}
-
-body .reflex-container.vertical > .reflex-splitter:hover,
-body .reflex-container.vertical > .reflex-splitter.active {
-	@apply w-[4px];
-}
-
-body .reflex-container.horizontal > .reflex-splitter:hover,
-body .reflex-container.horizontal > .reflex-splitter.active {
-	@apply h-[4px];
-}
-
 /* Monaco editor cursor fix (it shows blue cursor bcoz of tailwindcss) */
 .monaco-editor .inputarea {
 	@apply !ring-0 !outline-none !border-none focus:!ring-0 !shadow-none focus:!shadow-none;
