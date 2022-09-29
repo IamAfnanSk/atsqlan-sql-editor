@@ -3,6 +3,7 @@
     <h1>AtSQLan - SQL Editor</h1>
 
   <p>An online code playground for SQL.</p>
+  <p><b>NOTE:- This app is not optimized for small viewports yet.</b></p>
 </div>
 
 # AtSQLan - SQL Editor
