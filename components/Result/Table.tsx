@@ -3,8 +3,12 @@ import { Column, useSortBy, useTable } from 'react-table'
 import { FaSort, FaSortDown, FaSortUp } from 'react-icons/fa'
 import { FullScreen, useFullScreenHandle } from 'react-full-screen'
 import React, { useEffect, useMemo, useState } from 'react'
-import TableFooterWithOptions from './TableFooterWithOptions'
-import { LIMIT_FOR_ROWS } from '../../global'
+import { copyToClipboard, LIMIT_FOR_ROWS, SQLQueries } from '../../global'
+import { BsFullscreen, BsArrowCounterclockwise } from 'react-icons/bs'
+import { GrDocumentCsv } from 'react-icons/gr'
+import { TbLayoutColumns, TbLayoutRows } from 'react-icons/tb'
+import { VscJson } from 'react-icons/vsc'
+import { useWebsiteContext } from '../../hooks/useWebsiteContext'
 
 type TProps = {
 	columns: Column[]
@@ -20,6 +24,8 @@ const Table: React.FC<TProps> = ({ columns: columnsData, data: rowsData, timeToR
 
 	const columns = useMemo(() => columnsData, [columnsData])
 	const data = useMemo(() => dataToProcess, [dataToProcess])
+
+	const { selectedQueryIndex } = useWebsiteContext()
 
 	const { headerGroups, rows, prepareRow, getTableProps, getTableBodyProps } = useTable(
 		{
@@ -87,15 +93,76 @@ const Table: React.FC<TProps> = ({ columns: columnsData, data: rowsData, timeToR
 				</FullScreen>
 			</div>
 
-			<TableFooterWithOptions
-				columnsLength={columns.length}
-				filteredRowsLength={rows.length}
-				allRowsLength={rowsData.length}
-				fScreenHandle={fScreenHandle}
-				timeToResult={timeToResult}
-				limitResults={limitResults}
-				setLimitResults={setLimitResults}
-			/>
+			<div className='flex justify-between items-center'>
+				<div className='flex items-center space-x-2'>
+					<div>
+						<div onClick={() => fScreenHandle.enter()} className={`cursor-pointer text-xs py-1 px-2 flex justify-center items-center bg-white shadow-sm rounded-md`}>
+							<p className='mr-1'>Fullscreen</p>
+							<BsFullscreen />
+						</div>
+					</div>
+
+					{rowsData.length > 50 && (
+						<div>
+							<div className='relative flex items-start'>
+								<div className='flex items-center h-5'>
+									<input
+										checked={limitResults}
+										onChange={() => setLimitResults((limitResults) => !limitResults)}
+										id='limitResults'
+										name='limitResults'
+										type='checkbox'
+										className='ring-0 cursor-pointer focus:ring-0 h-4 w-4 text-indigo-600 border-gray-300 rounded'
+									/>
+								</div>
+								<div className='ml-2 text-sm'>
+									<label htmlFor='limitResults' className='select-none cursor-pointer'>
+										Show first {LIMIT_FOR_ROWS} records only
+									</label>
+								</div>
+							</div>
+						</div>
+					)}
+				</div>
+
+				<div className='flex items-center space-x-2'>
+					<a
+						href={SQLQueries[selectedQueryIndex].dataURL}
+						target='_blank'
+						className={`cursor-pointer text-xs py-1 px-2 flex justify-center items-center bg-white shadow-sm rounded-md`}
+						rel='noreferrer'
+					>
+						<p className='mr-1'>Download</p>
+						<GrDocumentCsv />
+					</a>
+
+					<div
+						onClick={() => {
+							copyToClipboard(JSON.stringify(data), 'JSON data copied to clipboard')
+						}}
+						className={`cursor-pointer text-xs py-1 px-2 flex justify-center items-center bg-white shadow-sm rounded-md`}
+					>
+						<p className='mr-1'>Copy</p>
+						<VscJson />
+					</div>
+				</div>
+
+				<div className='flex items-center space-x-2'>
+					<div className='flex items-center space-x-1'>
+						<BsArrowCounterclockwise />
+						<p className='text-sm'>{timeToResult}s</p>
+					</div>
+					<div className='flex items-center space-x-1'>
+						<TbLayoutColumns />
+						<p className='text-sm'>{columns.length}</p>
+					</div>
+					<div className='flex items-center space-x-1'>
+						<TbLayoutRows />
+						<p className='text-sm'>{rows.length}</p>
+						{limitResults && <p className='text-sm'> out of {rowsData.length}</p>}
+					</div>
+				</div>
+			</div>
 		</div>
 	)
 }

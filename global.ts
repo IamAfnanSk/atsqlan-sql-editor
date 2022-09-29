@@ -1,5 +1,6 @@
 import { editor } from 'monaco-editor'
 import monaco from 'monaco-editor'
+import { successNotification, errorNotification } from './utils/toast'
 
 const initialTab = 'Editor tab'
 
@@ -42,3 +43,12 @@ export const SQLQueries: TSQLQuery[] = [
 ]
 
 export const LIMIT_FOR_ROWS = 50
+
+export function copyToClipboard(str: string, customMessage?: string): void {
+	try {
+		navigator.clipboard.writeText(str)
+		successNotification(customMessage ? customMessage : 'Copied to clipboard')
+	} catch (error) {
+		errorNotification('Error copying to your clipboard. Please copy manually')
+	}
+}
