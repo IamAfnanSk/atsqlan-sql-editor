@@ -61,6 +61,8 @@ const ResultsArea: React.FC = () => {
 					setColumns(columns)
 					setData(rows)
 
+					setLimitResults(rows.length > LIMIT_FOR_ROWS)
+
 					setQueryState('success')
 
 					const endTime = Date.now()
