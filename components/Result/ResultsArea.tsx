@@ -98,7 +98,7 @@ const ResultsArea: React.FC = () => {
 			)}
 
 			{queryState === 'success' && (
-				<FullScreen className={`p-4 h-full w-full flex space-y-2 flex-col ${fScreenHandle.active ? 'bg-gray-100' : ''}`} handle={fScreenHandle}>
+				<FullScreen className={`p-4 h-full w-full flex space-y-2 flex-col justify-between ${fScreenHandle.active ? 'bg-gray-100' : ''}`} handle={fScreenHandle}>
 					<Table columns={memoizedColumns} data={memoizedData} />
 
 					<div className='flex justify-between items-center'>
