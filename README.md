@@ -51,6 +51,7 @@ This is an frontend app for data users where they can use many listed functional
 - Download CSV file
 - Copy JSON data
 - Awesome UX and UI
+- Time it took to run the query
 
 ## Load time
 
