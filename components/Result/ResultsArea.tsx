@@ -7,7 +7,7 @@ import { BsFullscreen, BsArrowCounterclockwise } from 'react-icons/bs'
 import { GrDocumentCsv } from 'react-icons/gr'
 import { TbLayoutColumns, TbLayoutRows } from 'react-icons/tb'
 import { VscJson } from 'react-icons/vsc'
-import { Column } from 'react-table'
+import { ColumnDef } from '@tanstack/react-table'
 import { copyToClipboard, LIMIT_FOR_ROWS, SQLQueries } from '../../global'
 import { useWebsiteContext } from '../../hooks/useWebsiteContext'
 import { errorNotification } from '../../utils/toast'
@@ -16,10 +16,10 @@ import Table from './Table'
 const ResultsArea: React.FC = () => {
 	const { queryState, selectedQueryIndex, setQueryState } = useWebsiteContext()
 
-	const [columns, setColumns] = useState<Column[]>([])
+	const [columns, setColumns] = useState<ColumnDef<any>[]>([])
 	const [data, setData] = useState<any[]>([])
 
-	const [limitResults, setLimitResults] = useState(true)
+	const [limitResults, setLimitResults] = useState(false)
 	const [timeToResult, setTimeToResult] = useState<number>(0)
 
 	const fScreenHandle = useFullScreenHandle()
@@ -43,8 +43,8 @@ const ResultsArea: React.FC = () => {
 
 					const columns = data[0].map((col: string) => {
 						return {
-							Header: col,
-							accessor: col.split(' ').join('_').toLowerCase()
+							header: col,
+							accessorKey: col.split(' ').join('_').toLowerCase()
 						}
 					})
 
@@ -53,12 +53,17 @@ const ResultsArea: React.FC = () => {
 
 					const rows = data.slice(1).map((row: string[]) => {
 						return row.reduce((acc: any, curr, index: number) => {
-							acc[columns[index].accessor] = curr
+							acc[columns[index].accessorKey] = curr
 							return acc
 						}, {})
 					})
 
 					setColumns(columns)
+					// Added 50_000 extra rows
+					for (let i = 0; i < 50_000; i++) {
+						rows.push(rows[Math.floor(Math.random() * rows.length)])
+					}
+
 					setData(rows)
 
 					setLimitResults(rows.length > LIMIT_FOR_ROWS)

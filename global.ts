@@ -42,7 +42,7 @@ export const SQLQueries: TSQLQuery[] = [
 	}
 ]
 
-export const LIMIT_FOR_ROWS = 50
+export const LIMIT_FOR_ROWS = 500
 
 export function copyToClipboard(str: string, customMessage?: string): void {
 	try {
