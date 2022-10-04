@@ -58,6 +58,7 @@ This is an frontend app for data users where they can use many listed functional
 <img width="887" alt="Load time" src="https://user-images.githubusercontent.com/48408572/193141409-5f572f54-4997-4a50-9c8c-b12db243f1c9.png">
 
 - Measured with lighthouse
+- Measured FPS for large number of rows I used FPS measuring tool of chrome - It gave average FPS of **55**.
 
 ## Optimization
 
