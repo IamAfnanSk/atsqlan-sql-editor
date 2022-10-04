@@ -21,8 +21,7 @@ const Table: React.FC<TProps> = ({ columns, data }) => {
 		},
 		onSortingChange: setSorting,
 		getCoreRowModel: getCoreRowModel(),
-		getSortedRowModel: getSortedRowModel(),
-		debugTable: true
+		getSortedRowModel: getSortedRowModel()
 	})
 
 	const { rows } = table.getRowModel()
@@ -32,6 +31,7 @@ const Table: React.FC<TProps> = ({ columns, data }) => {
 		size: rows.length,
 		overscan: 40
 	})
+
 	const { virtualItems: virtualRows, totalSize } = rowVirtualizer
 
 	const paddingTop = virtualRows.length > 0 ? virtualRows?.[0]?.start || 0 : 0
