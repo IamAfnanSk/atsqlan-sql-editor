@@ -30,7 +30,7 @@ const Table: React.FC<TProps> = ({ columns, data }) => {
 	const rowVirtualizer = useVirtual({
 		parentRef: tableContainerRef,
 		size: rows.length,
-		overscan: 10
+		overscan: 40
 	})
 	const { virtualItems: virtualRows, totalSize } = rowVirtualizer
 
