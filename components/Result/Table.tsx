@@ -51,7 +51,7 @@ const Table: React.FC<TProps> = ({ columns, data }) => {
 										colSpan={header.colSpan}
 									>
 										{header.isPlaceholder ? null : (
-											<p className='flex items-center space-x-2' onClick={header.column.getToggleSortingHandler()}>
+											<p className='flex cursor-pointer items-center space-x-2' onClick={header.column.getToggleSortingHandler()}>
 												<span> {flexRender(header.column.columnDef.header, header.getContext())}</span>
 												<span>
 													{{
