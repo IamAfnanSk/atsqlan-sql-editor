@@ -1,5 +1,5 @@
 import Papa from 'papaparse'
-import { useEffect, useMemo, useState } from 'react'
+import { Suspense, useEffect, useMemo, useState } from 'react'
 import { FullScreen, useFullScreenHandle } from 'react-full-screen'
 import { AiOutlinePlayCircle } from 'react-icons/ai'
 import { BiError } from 'react-icons/bi'
@@ -11,7 +11,11 @@ import { ColumnDef } from '@tanstack/react-table'
 import { copyToClipboard, LIMIT_FOR_ROWS, SQLQueries } from '../../global'
 import { useWebsiteContext } from '../../hooks/useWebsiteContext'
 import { errorNotification } from '../../utils/toast'
-import Table from './Table'
+import dynamic from 'next/dynamic'
+
+const Table = dynamic(() => import('./Table'), {
+	suspense: true
+})
 
 const ResultsArea: React.FC = () => {
 	const { queryState, selectedQueryIndex, setQueryState } = useWebsiteContext()
@@ -106,7 +110,9 @@ const ResultsArea: React.FC = () => {
 
 			{queryState === 'success' && (
 				<FullScreen className={`p-4 h-full w-full flex space-y-2 flex-col justify-between ${fScreenHandle.active ? 'bg-gray-100' : ''}`} handle={fScreenHandle}>
-					<Table columns={memoizedColumns} data={memoizedData} />
+					<Suspense fallback={`Loading table...`}>
+						<Table columns={memoizedColumns} data={memoizedData} />
+					</Suspense>
 
 					<div className='flex justify-between items-center'>
 						<div className='flex items-center space-x-2'>
