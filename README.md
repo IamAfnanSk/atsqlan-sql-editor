@@ -43,10 +43,10 @@ This is an frontend app for data users where they can use many listed functional
 - Fullscreen for result table
 - SQL syntax highlighting with basic support
 - Beautify the SQL queries
-- Save option - (fake saving)
+- Save option - (dummy saving)
 - Row & Columns counts
 - Sorting in table
-- Limit toggle for initial 50 rows
+- Limit toggle for initial 500 rows
 - Sticky header in table for easy view of data
 - Download CSV file
 - Copy JSON data
