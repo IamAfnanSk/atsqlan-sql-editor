@@ -23,7 +23,7 @@ This is an frontend app for data users where they can use many listed functional
 - @monaco-editor/react
 - papaparse
 - react-full-screen
-- react-table
+- @tanstack/react-table
 - react-hot-toast
 - allotment
 - sql-formatter
@@ -63,8 +63,9 @@ This is an frontend app for data users where they can use many listed functional
 ## Optimization
 
 - I optimized this app by memoizing things where needed like for the result table which made my app to not crash for large number of rows.
-- Limited rows to 50 by default to improve speed and avoid unnecessary rendering of rows which might not be needed.
+- Limited rows to 500 by default to improve speed and avoid unnecessary rendering of rows which might not be needed.
 - Purged all unused tailwind styles' classes in prod build.
+- Used virtualization for table rows which make table super fast and it wont break the browser 🚀✨.
 
 ## Author
 
