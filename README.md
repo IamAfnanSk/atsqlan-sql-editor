@@ -64,6 +64,7 @@ This is an frontend app for data users where they can use many listed functional
 
 - I optimized this app by memoizing things where needed like for the result table which made my app to not crash for large number of rows.
 - Limited rows to 50 by default to improve speed and avoid unnecessary rendering of rows which might not be needed.
+- Purged all unused tailwind styles' classes in prod build.
 
 ## Author
 
