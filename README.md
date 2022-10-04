@@ -55,10 +55,10 @@ This is an frontend app for data users where they can use many listed functional
 
 ## Load time
 
-<img width="887" alt="Load time" src="https://user-images.githubusercontent.com/48408572/193141409-5f572f54-4997-4a50-9c8c-b12db243f1c9.png">
+![load time](https://user-images.githubusercontent.com/48408572/193761132-df2a0cfe-3c8a-426d-97e2-d4388bd06b89.png)
 
-- Measured with lighthouse
-- Measured FPS for large number of rows I used FPS measuring tool of chrome - It gave average FPS of **55** (for the table scrolls alone) ✨.
+- Measured with lighthouse - 0.3 FCP ✨.
+- Measured FPS for large number using FPS tool of chrome - It gave average FPS of **55** (for the table scrolls alone) ✨.
 
 ## Optimization
 
