@@ -1,13 +1,20 @@
 import type { NextPage } from 'next'
 import Layout from '../components/Layout'
 import WebsiteContext from '../hooks/useWebsiteContext'
-import { useState } from 'react'
-import EditorArea from '../components/Editor/EditorArea'
+import { useState, Suspense } from 'react'
 import { TEditorState, initialEditorState, TSidebarLinks, TQueryState } from '../global'
 import Sidebar from '../components/Sidebar/Sidebar'
-import ResultsArea from '../components/Result/ResultsArea'
 import Head from 'next/head'
 import { Allotment } from 'allotment'
+import dynamic from 'next/dynamic'
+
+const ResultsArea = dynamic(() => import('../components/Result/ResultsArea'), {
+	suspense: true
+})
+
+const EditorArea = dynamic(() => import('../components/Editor/EditorArea'), {
+	suspense: true
+})
 
 const Home: NextPage = () => {
 	const [editorState, setEditorState] = useState<TEditorState>(initialEditorState)
@@ -37,10 +44,15 @@ const Home: NextPage = () => {
 					<Allotment.Pane>
 						<Allotment vertical>
 							<Allotment.Pane>
+								<Suspense fallback={`Loading editor...`}>
+									<EditorArea />
+								</Suspense>
 								<EditorArea />
 							</Allotment.Pane>
 							<Allotment.Pane minSize={350} maxSize={450}>
-								<ResultsArea />
+								<Suspense fallback={`Loading results...`}>
+									<ResultsArea />
+								</Suspense>
 							</Allotment.Pane>
 						</Allotment>
 					</Allotment.Pane>
