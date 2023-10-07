@@ -1,12 +1,10 @@
 <div align="center">
-  <img width="150px" src="https://atlan.com/img/atlan-blue.svg"/>
-    <h1>AtSQLan - SQL Editor</h1>
+  
+  <h1>AtSQLan - SQL Editor</h1>
 
   <p>An online code playground for SQL.</p>
   <p><b>NOTE:- This app is not optimized for small viewports yet.</b></p>
 </div>
-
-# AtSQLan - SQL Editor
 
 ### The codebase of the AtSQLan project
 
@@ -28,7 +26,7 @@ This is an frontend app for data users where they can use many listed functional
 - allotment
 - sql-formatter
 
-## Features - (The ones which were asked)
+## Features - (asked features)
 
 - Area to write SQL queries
 - Output of data
@@ -36,7 +34,7 @@ This is an frontend app for data users where they can use many listed functional
 - Basic design
 - Layout
 
-## Bonus features - (The ones which I added)
+## Bonus features - (extra features I added)
 
 - Fullscreen for IDE
 - Multi tab support for IDE
